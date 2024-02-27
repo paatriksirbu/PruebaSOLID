@@ -1,0 +1,8 @@
+@startuml
+    class Matriz {
+      - int[][] datos
+      + Matriz(int[][])
+      + void imprimir()
+      + Matriz transpuesta()
+    }
+@enduml
