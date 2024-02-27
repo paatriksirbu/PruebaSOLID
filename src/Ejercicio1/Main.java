@@ -6,7 +6,7 @@ public class Main {
         System.out.println("Matriz original");
         m.imprimir();
 
-        Matriz t = m.transpuesta();
+        Matriz t = new MatrizTranspuesta(new int[][]{{1,2},{3, 4}}).transpuesta();
         System.out.println("Matriz transpuesta");
         t.imprimir();
     }
