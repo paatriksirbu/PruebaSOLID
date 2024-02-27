@@ -1,4 +1,4 @@
-@startuml
+@strtuml
     class Matriz {
       - int[][] datos
       + Matriz(int[][])
