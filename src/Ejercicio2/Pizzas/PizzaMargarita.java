@@ -1,6 +1,8 @@
-package Ejercicio2;
+package Ejercicio2.Pizzas;
 
-public class PizzaMargarita extends Pizza{
+import Ejercicio2.Pizza;
+
+public class PizzaMargarita extends Pizza {
 
 
     public PizzaMargarita(String masa) {
