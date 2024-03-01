@@ -1,7 +1,7 @@
 package Ejercicio2;
 import java.util.*;
 
-public class OrderManager{
+public class OrderManager implements IntOrderManager{
     private String order;
 
     private List<String> orders = new ArrayList<>();
