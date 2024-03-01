@@ -3,7 +3,7 @@ import java.util.*;
 
 public class DataBaseManager implements IntDataBaseManager {
     private int Npedidos;
-   private User user;
+    private User user;
     private List<Pizza> pizzas = new ArrayList<>();
     private List<OrderManager> orders = new ArrayList<>();
     //Getters y setters
