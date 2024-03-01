@@ -6,10 +6,12 @@ public class OrderManager implements IntOrderManager{
 
     private List<String> orders = new ArrayList<>();
     private Pizza pizza;
+    private User user;
 
-    public OrderManager(String order) {
+    public OrderManager(String order, User user) {
         this.order = order;
         this.orders = new ArrayList<>();
+        this.user = user;
     }
 
     public void addOrder(String order) {
@@ -39,4 +41,9 @@ public class OrderManager implements IntOrderManager{
     public List<String> getOrders() {
         return orders;
     }
+
+    public User getUser() {
+        return user;
+    }
+
 }

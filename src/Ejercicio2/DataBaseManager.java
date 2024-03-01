@@ -2,22 +2,12 @@ package Ejercicio2;
 import java.util.*;
 
 public class DataBaseManager implements IntDataBaseManager {
-    private int id;
     private int Npedidos;
-    private String nombre;
-    private String direccion;
-    private String telefono;
+   private User user;
     private List<Pizza> pizzas = new ArrayList<>();
     private List<OrderManager> orders = new ArrayList<>();
     //Getters y setters
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getNpedidos() {
         return Npedidos;
@@ -27,30 +17,14 @@ public class DataBaseManager implements IntDataBaseManager {
         Npedidos = npedidos;
     }
 
-    public String getNombre() {
-        return nombre;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
 
     public void savePizza(Pizza pizza) {
         pizzas.add(pizza);
