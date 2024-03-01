@@ -6,7 +6,6 @@ public class OrderManager implements IntOrderManager{
 
     private List<Integer> orders = new ArrayList<>();
     private List<Pizza> pizzas = new ArrayList<>();
-    private Pizza pizza;
     private User user;
     private String status;
 
@@ -14,6 +13,7 @@ public class OrderManager implements IntOrderManager{
         this.order = order;
         this.orders = new ArrayList<>();
         this.user = user;
+        this.pizzas = new ArrayList<>();
     }
 
     public void addOrder(int order) {
@@ -31,14 +31,34 @@ public class OrderManager implements IntOrderManager{
         System.out.println("No se encontró ningún pedido con el ID " + orderId);
     }
 
-    public void updateOrder(int order) {
-        orders.set(orders.indexOf(order), order);
+    public void updateOrder(int nuevaId) {
+        int index = orders.indexOf(nuevaId);
+        if (index != -1) {
+            orders.set(index, nuevaId);
+        } else {
+            System.out.println("Order with id " + nuevaId + " not found.");
+        }
     }
 
     public void addPizza(Pizza pizza) {
-        pizzas.add(pizza);
+        this.pizzas.add(pizza);
+    }
+    public void removePizza(Pizza pizza) {
+        this.pizzas.remove(pizza);
     }
 
+    public void removePizzaByName(String pizzaName) {
+        Iterator<Pizza> iterator = pizzas.iterator();
+        while (iterator.hasNext()) {
+            Pizza pizza = iterator.next();
+            if (pizza.getNombre().equals(pizzaName)) {
+                iterator.remove();
+                System.out.println("Pizza " + pizzaName + " removed from the order.");
+                return;
+            }
+        }
+        System.out.println("Pizza " + pizzaName + " not found in the order.");
+    }
     public void showOrders() {
         System.out.println("Orders: ");
         for (int order : orders) {
@@ -66,4 +86,7 @@ public class OrderManager implements IntOrderManager{
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+
 }
