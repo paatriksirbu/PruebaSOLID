@@ -1,4 +1,7 @@
 package Ejercicio2;
 
-public class IntPaymentProcessor {
+public interface IntPaymentProcessor {
+    public void realizarPago();
+    public void cancerlarPago();
+    public void reembolsarPago();
 }

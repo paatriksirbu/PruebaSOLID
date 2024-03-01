@@ -7,6 +7,7 @@ public class OrderManager implements IntOrderManager{
     private List<String> orders = new ArrayList<>();
     private Pizza pizza;
     private User user;
+    private String status;
 
     public OrderManager(String order, User user) {
         this.order = order;
@@ -46,4 +47,11 @@ public class OrderManager implements IntOrderManager{
         return user;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

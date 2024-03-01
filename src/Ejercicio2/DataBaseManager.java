@@ -1,4 +1,5 @@
 package Ejercicio2;
+import javax.xml.crypto.Data;
 import java.util.*;
 
 public class DataBaseManager implements IntDataBaseManager {
@@ -6,6 +7,7 @@ public class DataBaseManager implements IntDataBaseManager {
     private User user;
     private List<Pizza> pizzas = new ArrayList<>();
     private List<OrderManager> orders = new ArrayList<>();
+    private OrderManager orderManager;
     //Getters y setters
 
 
@@ -96,6 +98,15 @@ public class DataBaseManager implements IntDataBaseManager {
         }
     }
 
+    public void updateOrderStatus(OrderManager order, String status) {
+        int index = orders.indexOf(order);
+        if (index != -1) {
+            orders.get(index).setStatus(status);
+            System.out.println("Actualizando estado del pedido " + order + " en la base de datos");
+        } else {
+            System.out.println("No se ha encontrado el pedido " + order + " en la base de datos");
+        }
+    }
     public void readOrder(OrderManager order) {
         if (orders.contains(order)) {
             System.out.println("Leyendo pedido " + order.getOrder() + " de la base de datos");
