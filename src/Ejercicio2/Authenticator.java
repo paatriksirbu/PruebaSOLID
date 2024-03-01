@@ -30,7 +30,7 @@ public class Authenticator {
     }
 
     private boolean isValidPassword(String password) {  //Creamos un metodo para que el usuario pueda introducir su contrasena con letras, numeros y caracteres.
-        String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{5,}$";
         return password.matches(regex);
     }
 

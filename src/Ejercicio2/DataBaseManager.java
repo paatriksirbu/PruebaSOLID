@@ -8,9 +8,8 @@ public class DataBaseManager implements IntDataBaseManager {
     private List<Pizza> pizzas = new ArrayList<>();
     private List<OrderManager> orders = new ArrayList<>();
     private OrderManager orderManager;
+
     //Getters y setters
-
-
     public int getNpedidos() {
         return Npedidos;
     }
