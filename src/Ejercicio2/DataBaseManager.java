@@ -8,6 +8,7 @@ public class DataBaseManager implements IntDataBaseManager {
     private String direccion;
     private String telefono;
     private List<Pizza> pizzas = new ArrayList<>();
+    private List<OrderManager> orders = new ArrayList<>();
     //Getters y setters
 
     public int getId() {
@@ -100,4 +101,55 @@ public class DataBaseManager implements IntDataBaseManager {
         pizzas.addAll(newPizzas);
         System.out.println("Guardando todas las pizzas en la base de datos");
     }
+
+    public void saveOrder(OrderManager order) {
+        orders.add(order);
+        System.out.println("Guardando pedido " + order.getOrder() + " en la base de datos");
+    }
+
+    public void deleteOrder(OrderManager order) {
+        orders.remove(order);
+        System.out.println("Borrando pedido " + order.getOrder() + " de la base de datos");
+    }
+
+    public void updateOrder(OrderManager order) {
+        int index = orders.indexOf(order);
+        if (index != -1) {
+            orders.set(index, order);
+            System.out.println("Actualizando pedido " + order.getOrder() + " en la base de datos");
+        } else {
+            System.out.println("No se ha encontrado el pedido " + order.getOrder() + " en la base de datos");
+        }
+    }
+
+    public void readOrder(OrderManager order) {
+        if (orders.contains(order)) {
+            System.out.println("Leyendo pedido " + order.getOrder() + " de la base de datos");
+        } else {
+            System.out.println("No se ha encontrado el pedido " + order.getOrder() + " en la base de datos");
+        }
+    }
+
+    public void readAllOrders() {
+        for (OrderManager order: orders) {
+            System.out.println("Leyendo todos los pedidos de la base de datos");
+        }
+    }
+
+    public void deleteAllOrders() {
+        orders.clear();
+        System.out.println("Borrando todos los pedidos de la base de datos");
+    }
+
+    public void updateAllOrders(List<OrderManager> newOrders){
+        orders = newOrders;
+        System.out.println("Actualizando todos los pedidos de la base de datos");
+    }
+
+    public void saveAllOrders(List<OrderManager> newOrders) {
+        orders.addAll(newOrders);
+        System.out.println("Guardando todos los pedidos en la base de datos");
+    }
+
+
 }
