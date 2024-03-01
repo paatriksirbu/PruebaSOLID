@@ -75,10 +75,10 @@ public class SistemaGestionPedidosPizza {
                     System.out.println("\n");
                     System.out.println("Pedido añadido");
 
-                    System.out.println("Quieres añadir otra pizza? (s/n)");
+                    System.out.println("Quieres añadir otra pizza? (s/n)"); //Preguntamos al usuario si quiere añadir otra pizza.
                     String respuesta = sc.nextLine();
 
-                    while (respuesta.equals("s")){
+                    while (respuesta.equals("s")){  //Mientras el usuario quiera añadir otra pizza, se le preguntará por otra pizza.
                         System.out.println("Elige una pizza: Pizza Amatriciana, Pizza Diavola, Pizza Carbonara, Pizza Barbacoa, Pizza Serrana, Pizza Tonno, Pizza Margarita");
                         pizzaElegida = sc.nextLine();
                         pizza = null;
@@ -125,7 +125,7 @@ public class SistemaGestionPedidosPizza {
                     break;
                case 2:
 
-                   System.out.println("Introduce la id del pedido a eliminar: ");
+                   System.out.println("Introduce la id del pedido a eliminar: ");   //Pedimos al usuario que introduzca la id del pedido que quiere eliminar.
                    int idEliminar = sc.nextInt();
                    sc.nextLine();
                    if (pedido1.getOrders().contains(idEliminar)){
@@ -135,21 +135,21 @@ public class SistemaGestionPedidosPizza {
                    }
                    break;
                 case 3:
-                    System.out.println("Introduce la id del pedido a actualizar: ");
+                    System.out.println("Introduce la id del pedido a actualizar: "); //Pedimos al usuario que introduzca la id del pedido que quiere actualizar.
                     int idActualizar = sc.nextInt();
                     sc.nextLine();
 
-                    if(pedido1.getOrders().isEmpty()){
+                    if(pedido1.getOrders().isEmpty()){  //Si no hay pedidos, se le informa al usuario.
                         System.out.println("No hay pedidos");
                     } else {
-                        if (pedido1.getOrders().contains(idActualizar)) {
+                        if (pedido1.getOrders().contains(idActualizar)) {   //Si el pedido existe, se le pide al usuario que introduzca la nueva id del pedido.
                             pedido1 = new OrderManager(idActualizar, user);
                             System.out.println("Introduce la nueva id del pedido: ");
                             int nuevaId = sc.nextInt();
                             sc.nextLine();
                             pedido1.updateOrder(idActualizar, nuevaId);
 
-                            System.out.println("1. Añadir pizza");
+                            System.out.println("1. Añadir pizza");  //Se le pide al usuario que elija si quiere añadir o eliminar una pizza.
                             System.out.println("2. Eliminar pizza");
                             System.out.println("Elige una opción: ");
                             int opcionPizza = sc.nextInt();
@@ -250,7 +250,7 @@ public class SistemaGestionPedidosPizza {
                                         respuesta = sc.nextLine();
                                     }
                                     break;
-                                case 2:
+                                case 2: //Si el usuario elige eliminar una pizza, se le pide que introduzca la pizza que quiere eliminar.
                                     System.out.println("Elige una pizza para eliminar: Pizza Amatriciana, Pizza Diavola, Pizza Carbonara, Pizza Barbacoa, Pizza Serrana, Pizza Tonno, Pizza Margarita");
                                     pizzaElegida = sc.nextLine();
                                     // Here you would need to implement a method in your OrderManager class that removes a pizza based on its name
@@ -270,13 +270,24 @@ public class SistemaGestionPedidosPizza {
                     }
 
                     break;
-                case 4:
+                case 4: //Mostramos los pedidos.
                     pedido1.showOrders();
                     break;
-                case 5:
+                case 5: //Realizamos el pago.
+                    System.out.println("Introduzca el nombre de la tarjeta: ");
+                    String nombreTarjeta = sc.nextLine();
+                    System.out.println("Introduzca el número de la tarjeta: ");
+                    String numeroTarjeta = sc.nextLine();
+                    System.out.println("Introduzca la fecha de caducidad de la tarjeta: ");
+                    String fechaCaducidad = sc.nextLine();
+                    System.out.println("Introduzca el código de seguridad de la tarjeta: ");
+                    String codigoSeguridad = sc.nextLine();
 
+                    PaymentProcessor pago = new PaymentProcessor();
+                    pago.realizarPago();
+                    break;
 
-                case 6:
+                case 6: //Salimos del programa.
                     System.exit(0);
                     break;
 

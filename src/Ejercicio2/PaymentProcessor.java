@@ -9,7 +9,7 @@ public class PaymentProcessor {
     private int idPedido;
     private double importePedido;
 
-
+    //Metodos para pagos. Se simulan los pagos
     public void realizarPago() {
         System.out.println("Realizando pago...");
         System.out.println("Pago realizado correctamente");

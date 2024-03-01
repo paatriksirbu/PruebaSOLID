@@ -1,0 +1,168 @@
+@startuml
+
+' Interfaces
+interface IntAuthenticator {
+    +getUser() : String
+    +setUser(user : String)
+    +getPassword() : String
+    +setPassword(password : String)
+    +authenticate(user : String, password : String) : boolean
+}
+
+interface IntDataBaseManager {
+    +savePizza(pizza : Pizza)
+    +deletePizza(pizza : Pizza)
+    +updatePizza(pizza : Pizza)
+    +readPizza(pizza : Pizza)
+    +readAllPizzas()
+    +deleteAllPizzas()
+    +updateAllPizzas(newPizzas : List<Pizza>)
+    +saveAllPizzas(newPizzas : List<Pizza>)
+}
+
+interface IntOrderManager {
+    +addOrder(order : int)
+    +addPizzaToOrder(order : int, pizza : Pizza)
+    +removeOrder(orderId : int)
+    +updateOrder(oldOrderId : int, newOrderId : int)
+    +removePizzaByName(order : int, pizzaName : String)
+}
+
+interface IntPaymentProcessor {
+    +realizarPago()
+    +cancelarPago()
+    +reembolsarPago()
+}
+
+interface IntPizza {
+    +prepare()
+    +bake()
+    +cut()
+    +box()
+}
+
+' Clases
+class Authenticator {
+    -user : String
+    -password : String
+    +Authenticator(user : String, password : String)
+    +getUser() : String
+    +setUser(user : String)
+    +getPassword() : String
+    +setPassword(password : String)
+    +authenticate(user : String, password : String) : boolean
+}
+class OrderManager implements IntOrderManager {
+    -order : int
+    -orderPizzas : Map<Integer, List<Pizza>>
+    -user : User
+    -status : String
+    +OrderManager(order : int, user : User)
+    +addOrder(order : int)
+    +addPizzaToOrder(order : int, pizza : Pizza)
+    +removeOrder(id : int)
+    +updateOrder(oldOrderId : int, newOrderId : int)
+    +removePizzaByName(order : int, pizzaName : String)
+    +showOrders()
+    +getOrder() : int
+    +getOrders() : Set<Integer>
+    +getUser() : User
+    +getStatus() : String
+    +setStatus(status : String)
+}
+class DataBaseManager {
+    -user : User
+    -pizzas : List<Pizza>
+    -orders : List<OrderManager>
+    -orderManager : OrderManager
+    +getUser() : User
+    +setUser(user : User)
+    +savePizza(pizza : Pizza)
+    +deletePizza(pizza : Pizza)
+    +updatePizza(pizza : Pizza)
+    +readPizza(pizza : Pizza)
+    +readAllPizzas()
+    +deleteAllPizzas()
+    +updateAllPizzas(newPizzas : List<Pizza>)
+    +saveAllPizzas(newPizzas : List<Pizza>)
+}
+class User {
+    -id : int
+    -name : String
+    -address : String
+    -phone : int
+    -email : String
+    -authenticator : Authenticator
+    +User(id : int, name : String, address : String, phone : int, email : String)
+    +getId() : int
+    +getName() : String
+    +getAddress() : String
+    +getPhone() : int
+    +getEmail() : String
+    +crearUsuario()
+}
+class PaymentProcessor {
+    -dataBaseManager : DataBaseManager
+    -orderManager : OrderManager
+    -idPago : int
+    -idPedido : int
+    -importePedido : double
+    +realizarPago() : void
+    +cancelarPago() : void
+    +reembolsarPago() : void
+}
+
+
+abstract class Pizza implements IntPizza {
+    -masa : String
+    -nombre : String
+    -toppings : List<String>
+    +Pizza()
+    +addTopping(topping : String)
+    +removeTopping(topping : String)
+    +showToppings()
+    +getNombre() : String
+    +setNombre(nombre : String)
+    +prepare()
+    +bake()
+    +cut()
+    +box()
+}
+
+class PizzaCarbonara extends Pizza {
+    +PizzaCarbonara()
+}
+class PizzaAmatriciana extends Pizza {
+    +PizzaAmatriciana()
+}
+class PizzaBarbacoa extends Pizza {
+    +PizzaBarbacoa()
+}
+
+class PizzaDiavola extends Pizza {
+    +PizzaDiavola()
+}
+
+class PizzaMargarita extends Pizza {
+    +PizzaMargarita()
+}
+
+class PizzaSerrana extends Pizza {
+    +PizzaSerrana()
+}
+class PizzaTonno extends Pizza {
+    +PizzaTonno()
+}
+
+
+
+' Relaciones
+Authenticator --|> IntAuthenticator
+DataBaseManager --|> IntDataBaseManager
+User -- Authenticator : uses >
+OrderManager --|> IntOrderManager
+OrderManager --> User : uses
+PaymentProcessor --> DataBaseManager : uses
+PaymentProcessor --> OrderManager : uses
+PaymentProcessor --> IntPaymentProcessor
+@enduml

@@ -3,20 +3,13 @@ import javax.xml.crypto.Data;
 import java.util.*;
 
 public class DataBaseManager implements IntDataBaseManager {
-    private int Npedidos;
     private User user;
     private List<Pizza> pizzas = new ArrayList<>();
     private List<OrderManager> orders = new ArrayList<>();
     private OrderManager orderManager;
 
-    //Getters y setters
-    public int getNpedidos() {
-        return Npedidos;
-    }
 
-    public void setNpedidos(int npedidos) {
-        Npedidos = npedidos;
-    }
+
 
 
     public User getUser() {
@@ -27,7 +20,7 @@ public class DataBaseManager implements IntDataBaseManager {
         this.user = user;
     }
 
-    public void savePizza(Pizza pizza) {
+    public void savePizza(Pizza pizza) {    // Guarda la pizza en la base de datos
         pizzas.add(pizza);
         System.out.println("Guardando pizza " + pizza.getNombre() + " en la base de datos");
     }

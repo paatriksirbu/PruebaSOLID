@@ -53,7 +53,7 @@ public class User {
                 '}';
     }
 
-    public void crearUsuario() {
+    public void crearUsuario() {    // Método para crear un usuario y autenticarlo
         Scanner sc = new Scanner(System.in);
         System.out.println("Creando usuario");
 
