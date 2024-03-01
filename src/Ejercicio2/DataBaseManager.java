@@ -1,7 +1,7 @@
 package Ejercicio2;
 import java.util.*;
 
-public class DataBaseManager {
+public class DataBaseManager implements IntDataBaseManager {
 
     private List<Pizza> pizzas = new ArrayList<>();
     public void savePizza(Pizza pizza) {
@@ -42,6 +42,7 @@ public class DataBaseManager {
         pizzas.clear();
         System.out.println("Borrando todas las pizzas de la base de datos");
     }
+
 
     public void updateAllPizzas(List<Pizza> newPizzas){
         pizzas = newPizzas;
