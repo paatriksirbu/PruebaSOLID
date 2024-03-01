@@ -1,4 +1,6 @@
 package Ejercicio2;
+import Ejercicio2.Pizzas.*;
+
 import java.util.*;
 
 public class SistemaGestionPedidosPizza {
@@ -22,11 +24,57 @@ public class SistemaGestionPedidosPizza {
 
             switch (opcion) {
                 case 1:
-                    OrderManager order = new OrderManager("", user);
                     System.out.println("Introduce la id del pedido: ");
-                    String id = sc.next();
+                    int id = sc.nextInt();
+                    OrderManager pedido1 = new OrderManager(id, user);
+                    System.out.println("Elige una pizza: PizzaAmatriciana, PizzaDiavola, PizzaCarbonara, PizzaBarbacoa, PizzaSerrana, PizzaTonno, PizzaMargarita");
+                    String pizzaElegida = sc.next();
+                    Pizza pizza = null;
+
+                    switch (pizzaElegida){
+                        case "PizzaAmatriciana":
+                            pizza = new PizzaAmatriciana();
+                            break;
+                        case "PizzaDiavola":
+                            pizza = new PizzaDiavola();
+                            break;
+                        case "PizzaCarbonara":
+                            pizza = new PizzaCarbonara();
+                            break;
+                        case "PizzaBarbacoa":
+                            pizza = new PizzaBarbacoa();
+                            break;
+                        case "PizzaSerrana":
+                            pizza = new PizzaSerrana();
+                            break;
+                        case "PizzaTonno":
+                            pizza = new PizzaTonno();
+                            break;
+                        case "PizzaMargarita":
+                            pizza = new PizzaMargarita();
+                            break;
+                        default:
+                            System.out.println("Pizza no válida");
+                            break;
+                    }
+                    if (pizza == null){
+                        System.out.println("No se ha añadido la pizza");
+                    }
+
+                    pedido1.addPizza(pizza);
+                    System.out.println("Has elegido la pizza: " + pizza.getNombre());
+                    System.out.println("Los toppings son: ");
+                    pizza.showToppings();
+                    System.out.println("\n");
+                    System.out.println("Pedido añadido");
+                    pedido1.addOrder(id);
+
+
+
+
+
                     break;
-                case 2:
+               /* case 2:
                     OrderManager order2 = new OrderManager();
                     order2.removeOrder();
                     break;
@@ -41,6 +89,8 @@ public class SistemaGestionPedidosPizza {
                 case 5:
                     System.exit(0);
                     break;
+
+                */
                 default:
                     System.out.println("Opción no válida");
                     break;

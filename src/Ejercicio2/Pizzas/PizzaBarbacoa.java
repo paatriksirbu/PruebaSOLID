@@ -3,8 +3,7 @@ import Ejercicio2.Pizza;
 
 public class PizzaBarbacoa extends Pizza {
 
-    public PizzaBarbacoa(String masa) {
-        super(masa);
+    public PizzaBarbacoa() {
         setNombre("Pizza Barbacoa");
         addTopping("Tomate natural");
         addTopping("Carne picada");

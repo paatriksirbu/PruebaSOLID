@@ -7,7 +7,7 @@ public abstract class Pizza implements IntPizza {
     private String nombre;
     private List<String> toppings = new ArrayList<>();
 
-    public Pizza(String masa) {
+    public Pizza() {
         this.masa = masa;
         this.nombre = nombre;
         this.toppings = new ArrayList<>();

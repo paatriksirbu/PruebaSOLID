@@ -4,8 +4,8 @@ import Ejercicio2.Pizza;
 
 public class PizzaDiavola extends Pizza {
 
-        public PizzaDiavola(String masa) {
-            super(masa);
+
+    public PizzaDiavola(){
             setNombre("Pizza Diavola");
             addTopping("Tomate natural");
             addTopping("Salame picante");
