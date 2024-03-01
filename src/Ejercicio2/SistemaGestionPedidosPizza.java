@@ -69,6 +69,55 @@ public class SistemaGestionPedidosPizza {
                     System.out.println("Pedido añadido");
                     pedido1.addOrder(id);
 
+                    System.out.println("Quieres añadir otra pizza? (s/n)");
+                    String respuesta = sc.next();
+
+                    while (respuesta.equals("s")){
+                        System.out.println("Elige una pizza: PizzaAmatriciana, PizzaDiavola, PizzaCarbonara, PizzaBarbacoa, PizzaSerrana, PizzaTonno, PizzaMargarita");
+                        pizzaElegida = sc.next();
+                        pizza = null;
+
+                        switch (pizzaElegida){
+                            case "PizzaAmatriciana":
+                                pizza = new PizzaAmatriciana();
+                                break;
+                            case "PizzaDiavola":
+                                pizza = new PizzaDiavola();
+                                break;
+                            case "PizzaCarbonara":
+                                pizza = new PizzaCarbonara();
+                                break;
+                            case "PizzaBarbacoa":
+                                pizza = new PizzaBarbacoa();
+                                break;
+                            case "PizzaSerrana":
+                                pizza = new PizzaSerrana();
+                                break;
+                            case "PizzaTonno":
+                                pizza = new PizzaTonno();
+                                break;
+                            case "PizzaMargarita":
+                                pizza = new PizzaMargarita();
+                                break;
+                            default:
+                                System.out.println("Pizza no válida");
+                                break;
+                        }
+                        if (pizza == null){
+                            System.out.println("No se ha añadido la pizza");
+                        }
+
+                        pedido1.addPizza(pizza);
+                        System.out.println("Has elegido la pizza: " + pizza.getNombre() + "\n");
+                        pizza.showToppings();
+                        System.out.println("\n");
+                        System.out.println("Pedido añadido");
+                        pedido1.addOrder(id);
+
+                        System.out.println("Quieres añadir otra pizza? (s/n)");
+                        respuesta = sc.next();
+                    }
+
 
 
 
