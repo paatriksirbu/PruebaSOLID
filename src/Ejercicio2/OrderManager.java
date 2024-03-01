@@ -20,8 +20,15 @@ public class OrderManager implements IntOrderManager{
         orders.add(order);
     }
 
-    public void removeOrder(int order) {
-        orders.remove(Integer.valueOf(order));
+    public void removeOrder(int orderId) {
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i) == orderId) {
+                orders.remove(i);
+                System.out.println("Pedido " + orderId + " eliminado.");
+                return;
+            }
+        }
+        System.out.println("No se encontró ningún pedido con el ID " + orderId);
     }
 
     public void updateOrder(int order) {
