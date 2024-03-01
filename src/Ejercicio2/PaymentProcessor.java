@@ -16,7 +16,7 @@ public class PaymentProcessor {
         dataBaseManager.updateOrderStatus(orderManager, "Pagado");
     }
 
-    public void cancerlarPago() {
+    public void cancelarPago() {
         System.out.println("Cancelando pago");
         System.out.println("Pago cancelado correctamente");
         dataBaseManager.updateOrderStatus(orderManager, "Cancelado");

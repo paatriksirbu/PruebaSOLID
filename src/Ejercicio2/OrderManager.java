@@ -3,66 +3,72 @@ import java.util.*;
 
 public class OrderManager implements IntOrderManager{
     private int order;
-
-    private List<Integer> orders = new ArrayList<>();
-    private List<Pizza> pizzas = new ArrayList<>();
+    private Map<Integer, List<Pizza>> orderPizzas = new HashMap<>();
     private User user;
     private String status;
 
     public OrderManager(int order, User user) {
         this.order = order;
-        this.orders = new ArrayList<>();
         this.user = user;
-        this.pizzas = new ArrayList<>();
     }
 
     public void addOrder(int order) {
-        orders.add(order);
+        orderPizzas.put(order, new ArrayList<>());
     }
 
-    public void removeOrder(int orderId) {
-        for (int i = 0; i < orders.size(); i++) {
-            if (orders.get(i) == orderId) {
-                orders.remove(i);
-                System.out.println("Pedido " + orderId + " eliminado.");
-                return;
-            }
-        }
-        System.out.println("No se encontró ningún pedido con el ID " + orderId);
-    }
-
-    public void updateOrder(int nuevaId) {
-        int index = orders.indexOf(nuevaId);
-        if (index != -1) {
-            orders.set(index, nuevaId);
+    public void addPizzaToOrder(int order, Pizza pizza){
+        List<Pizza> pizzas = orderPizzas.get(order);
+        if (pizzas != null) {
+            pizzas.add(pizza);
+            System.out.println("Pizza " + pizza.getNombre() + " added to order " + order);
         } else {
-            System.out.println("Order with id " + nuevaId + " not found.");
+            System.out.println("Order " + order + " not found.");
         }
     }
 
-    public void addPizza(Pizza pizza) {
-        this.pizzas.add(pizza);
+    public void removeOrder(int id) {
+        if (orderPizzas.containsKey(id)) {
+            orderPizzas.remove(id);
+            System.out.println("Order " + id + " removed.");
+        } else {
+            System.out.println("Order " + id + " not found.");
+        }
     }
-    public void removePizza(Pizza pizza) {
-        this.pizzas.remove(pizza);
+    public void updateOrder(int oldOrderId, int newOrderId) {
+        List<Pizza> pizzas = orderPizzas.remove(oldOrderId);
+        if (pizzas != null) {
+            orderPizzas.put(newOrderId, pizzas);
+            System.out.println("Order " + oldOrderId + " updated to " + newOrderId);
+        } else {
+            System.out.println("Order " + oldOrderId + " not found.");
+        }
     }
 
-    public void removePizzaByName(String pizzaName) {
-        Iterator<Pizza> iterator = pizzas.iterator();
-        while (iterator.hasNext()) {
-            Pizza pizza = iterator.next();
-            if (pizza.getNombre().equals(pizzaName)) {
-                iterator.remove();
-                System.out.println("Pizza " + pizzaName + " removed from the order.");
-                return;
+
+    public void removePizzaByName(int order, String pizzaName) {
+        List<Pizza> pizzas = orderPizzas.get(order);
+        if (pizzas != null) {
+            Iterator<Pizza> iterator = pizzas.iterator();
+            while (iterator.hasNext()) {
+                Pizza pizza = iterator.next();
+                if (pizza.getNombre().equals(pizzaName)) {
+                    iterator.remove();
+                    System.out.println("Pizza " + pizzaName + " removed from order " + order);
+                    return;
+                }
             }
+            System.out.println("Pizza " + pizzaName + " not found in order " + order);
+        } else {
+            System.out.println("Order " + order + " not found.");
         }
-        System.out.println("Pizza " + pizzaName + " not found in the order.");
     }
     public void showOrders() {
-        System.out.println("Orders: ");
-        for (int order : orders) {
-            System.out.println(order);
+        for (Map.Entry<Integer, List<Pizza>> entry : orderPizzas.entrySet()) {
+            System.out.println("Order number: " + entry.getKey());
+            System.out.println("Pizzas in this order: ");
+            for (Pizza pizza : entry.getValue()) {
+                System.out.println(pizza.getNombre());
+            }
         }
     }
 
@@ -70,10 +76,12 @@ public class OrderManager implements IntOrderManager{
     public int getOrder() {
         return order;
     }
-
-    public List<Integer> getOrders() {
-        return orders;
+    public Set<Integer> getOrders() {
+        return orderPizzas.keySet();
     }
+
+
+
 
     public User getUser() {
         return user;
